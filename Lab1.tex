@@ -1,0 +1,23 @@
+\documentclass{article}
+\usepackage{polski}
+\usepackage[utf8]{inputenc}
+\title{Sprawozdanie z Laboratorium I}
+\begin{document}
+\maketitle
+\section{Opis hierarchii}
+W zadanych konfiguracjach mamy do czynienia z pojęciami: Client, Child, Parent, Silbling, Parent oraz Server.
+Client jest węzłem sieci pobierającym zasoby, komunikującym za pomocą pośredników (proxy) lub bezpośrednio z węzłem udostępniającym zasoby: z serwerem (Server). 
+W przypadku obecności pośredników rozgraniczenie jest następujące: Child jest elementem przekazującym zapytanie (request) do serwera rodzicowi (Parent) lub rodzeństwu (Sibling). Różnica pomiędzy elementami sieci Parent i Sibling polega na tym, że Parent pobiera zasoby z serwera w przypadku ich braku w cache, natomiast Sibling przekazuje tylko dane zapisane już w Cache. Nie kieruje zapytania do serwera w przypadku braku zasobów, po prostu informuje o braku dostępu inny element typu Sibling.
+\section{Hierarchia 1)}
+W ramach tej hierarchii klient wysyła żądanie o zasób natomiast węzły X2 lub X3 przekazują żądanie do węzła X1, który po odpowiedzi z serwera przechowuje odpowiedź w swoim cache.
+\section{Hierarchia 2)}
+W ramach drugiej hierarchii wszystkie 3 węzły mają dostęp do zasobów serwera, natomiast Klient po przesłaniu żądania do jednego z nich otrzymuje odpowiedź, jednocześnie w cache tego węzła znajdzie się wyszukiwany zasób.
+\section{Hierarchia 3)}
+W ramach kolejnej hierarchii węzeł X3 pełni rolę węzła pośredniczącego, który wysyła żądanie do węzła X1 lub X2. Te węzły natomiast wysyłają żądanie do serwera i po jej otrzymaniu zwracają ją do proxy. Przechowują także dane w swoim cache.
+\section{Hierarchia 4)}
+W ramach ostatniej hierarchii węzeł X3 wysyła żądanie do proxy X2, natomiast ten węzeł może pytać węzeł X1 lub bezpośrednio serwer. W przypadku, gdy zasób jest dostępny w węźle X1 możliwe jest uzyskanie szybkiego dostępu do niego, natomiast w przypadku braku możliwe jest zapytanie do serwera. Dane przechowywane są w węźle X1 oraz X2.
+\section{Wnioski}
+Wykonane w ramach laboratorium hierarchie pokazały dwie podstawowe zalety serwerów squid. Pierwszą zaletą jest możliwość przechowywania w cache często pobieranych zasobów, zmniejszając tym samym ruch sieciowy i zwiększając tym samym wydajność sieci. Dzięki temu w dużej firmie informatycznej po dużej aktualizacji systemu można zapobiec pobieraniu przez każdego pracownika aktualizacji, w wyniku czego ten sam zasób pobierany by był wiele razy. Zamiast tego proxy przechowuje aktualizację i w ramach szybkiej sieci wewnętrznej jest w stanie ją bardzo szybko rozprowadzić. Kolejną zaletą jest kontrola dostępu do zasobów uniemożliwiająca np. pracownikom wchodzenie na portale społecznościowe w czasie pracy. 
+
+
+\end{document}
